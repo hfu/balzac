@@ -29,8 +29,10 @@
       tiles: [
         https://maps.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg
       ]
-      tileSize: 256
       attribution: 国土地理院
+      tileSize: 256
+      minzoom: 0
+      maxzoom: 18
     }
   }
   sprite: https://hfu.github.io/unite-sprite/sprite
@@ -63,11 +65,23 @@
       minzoom: 13
       paint: {
         fill-color: [
-          rgba
+          rgb
           255
           255
           0
-          0.6
+        ]
+        fill-opacity: [
+          case
+          [
+            boolean
+            [
+              feature-state
+              hover
+            ]
+            false
+          ]
+          0.1
+          0.5
         ]
       }
     }

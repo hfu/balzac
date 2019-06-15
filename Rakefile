@@ -8,4 +8,5 @@ end
 
 task :style do
   sh "hjson -c style.hjson > style.json"
+  sh "gl-style-validate style.json"
 end

@@ -7,5 +7,49 @@ var map = new mapboxgl.Map({
   attributionControl: true,
   hash: true
 });
+var hoverStateId = null;
+var popup = new mapboxgl.Popup({
+  closeButton: false,
+  closeOnClick: false
+});
+map.on('mousemove', 'fude', function (e) {
+  if (e.features.length > 0) {
+    if (hoverStateId) {
+      map.setFeatureState({
+        source: 'v',
+        sourceLayer: 'fude',
+        id: hoverStateId
+      }, {
+        hover: false
+      });
+    }
+
+    hoverStateId = e.features[0].id;
+    map.setFeatureState({
+      source: 'v',
+      sourceLayer: 'fude',
+      id: hoverStateId
+    }, {
+      hover: true
+    });
+    map.getCanvas().style.cursor = 'pointer';
+    popup.setLngLat(e.lngLat).setHTML(JSON.stringify(e.features[0].properties, null, 2)).addTo(map);
+  }
+});
+map.on('mouseleave', 'fude', function () {
+  if (hoverStateId) {
+    map.setFeatureState({
+      source: 'v',
+      sourceLayer: 'fude',
+      id: hoverStateId
+    }, {
+      hover: false
+    });
+    hoverStateId = null;
+  }
+
+  map.getCanvas().style.cursor = '';
+  popup.remove();
+});
 
 },{}]},{},[1]);
