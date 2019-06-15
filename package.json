@@ -1,0 +1,13 @@
+{
+  "name": "balzac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hfu/balzac",
+  "author": "Hidenori Fujimura <hfu@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babelify": "^10.0.0"
+  }
+}
